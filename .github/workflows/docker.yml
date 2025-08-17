@@ -1,0 +1,10 @@
+name: Docker Image
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build . -t ghcr.io/Tnexsmedia/chat1one:latest
+      - run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u TU_USUARIO --password-stdin
+      - run: docker push ghcr.io/nexsmedia/chat1one:latest
